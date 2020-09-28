@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-fanmio-test-dev-83056-authRole",
+            "UnauthRoleArn": "arn:aws:iam::290589978604:role/amplify-fanmio-test-dev-83056-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::290589978604:role/amplify-fanmio-test-dev-83056-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-fanmio-test-dev-83056-deployment",
+            "UnauthRoleName": "amplify-fanmio-test-dev-83056-unauthRole",
+            "StackName": "amplify-fanmio-test-dev-83056",
+            "StackId": "arn:aws:cloudformation:us-east-1:290589978604:stack/amplify-fanmio-test-dev-83056/d3da9ec0-019f-11eb-a8ad-0a254e00bc9f",
+            "AmplifyAppId": "d3puptn0oxy2cv"
+        }
+    }
+}
