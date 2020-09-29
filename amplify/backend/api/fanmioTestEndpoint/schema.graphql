@@ -1,5 +1,43 @@
-type Todo @model {
+type Price {
+  amount: Float!
+  currency: String!
+}
+
+type ShippingAddress {
+  fname: String!
+  lname: String!
+  flat: String!
+  street: String!
+  city: String!
+  country: String!
+  state: String!
+  zipCode: String!
+}
+
+type CartItem @model {
   id: ID!
-  name: String!
-  description: String
+  userId: String!
+  title: String!
+  subtitle: String
+  quantity: Int
+  price: Price!
+}
+
+type CustomerInformation @model {
+  id: ID!
+  userID: String!
+  email: AWSEmail!
+  isSubscribed: Boolean!
+  shippingAddress: ShippingAddress!
+}
+
+type Discount @model {
+  id: ID!
+  userID: String!
+  number: String!
+  archived: Boolean!
+}
+
+type Mutation {
+  validateDiscount(discount: String): String
 }

@@ -2,18 +2,28 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateTodoInput = {
+export type CreateCartItemInput = {
   id?: string | null,
-  name: string,
-  description?: string | null,
+  userId: string,
+  title: string,
+  subtitle?: string | null,
+  quantity?: number | null,
+  price: PriceInput,
 };
 
-export type ModelTodoConditionInput = {
-  name?: ModelStringInput | null,
-  description?: ModelStringInput | null,
-  and?: Array< ModelTodoConditionInput | null > | null,
-  or?: Array< ModelTodoConditionInput | null > | null,
-  not?: ModelTodoConditionInput | null,
+export type PriceInput = {
+  amount: number,
+  currency: string,
+};
+
+export type ModelCartItemConditionInput = {
+  userId?: ModelStringInput | null,
+  title?: ModelStringInput | null,
+  subtitle?: ModelStringInput | null,
+  quantity?: ModelIntInput | null,
+  and?: Array< ModelCartItemConditionInput | null > | null,
+  or?: Array< ModelCartItemConditionInput | null > | null,
+  not?: ModelCartItemConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -56,23 +66,114 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type UpdateTodoInput = {
-  id: string,
-  name?: string | null,
-  description?: string | null,
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
 };
 
-export type DeleteTodoInput = {
+export type UpdateCartItemInput = {
+  id: string,
+  userId?: string | null,
+  title?: string | null,
+  subtitle?: string | null,
+  quantity?: number | null,
+  price?: PriceInput | null,
+};
+
+export type DeleteCartItemInput = {
   id?: string | null,
 };
 
-export type ModelTodoFilterInput = {
+export type CreateCustomerInformationInput = {
+  id?: string | null,
+  userID: string,
+  email: string,
+  isSubscribed: boolean,
+  shippingAddress: ShippingAddressInput,
+};
+
+export type ShippingAddressInput = {
+  fname: string,
+  lname: string,
+  flat: string,
+  street: string,
+  city: string,
+  country: string,
+  state: string,
+  zipCode: string,
+};
+
+export type ModelCustomerInformationConditionInput = {
+  userID?: ModelStringInput | null,
+  email?: ModelStringInput | null,
+  isSubscribed?: ModelBooleanInput | null,
+  and?: Array< ModelCustomerInformationConditionInput | null > | null,
+  or?: Array< ModelCustomerInformationConditionInput | null > | null,
+  not?: ModelCustomerInformationConditionInput | null,
+};
+
+export type ModelBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type UpdateCustomerInformationInput = {
+  id: string,
+  userID?: string | null,
+  email?: string | null,
+  isSubscribed?: boolean | null,
+  shippingAddress?: ShippingAddressInput | null,
+};
+
+export type DeleteCustomerInformationInput = {
+  id?: string | null,
+};
+
+export type CreateDiscountInput = {
+  id?: string | null,
+  userID: string,
+  number: string,
+  archived: boolean,
+};
+
+export type ModelDiscountConditionInput = {
+  userID?: ModelStringInput | null,
+  number?: ModelStringInput | null,
+  archived?: ModelBooleanInput | null,
+  and?: Array< ModelDiscountConditionInput | null > | null,
+  or?: Array< ModelDiscountConditionInput | null > | null,
+  not?: ModelDiscountConditionInput | null,
+};
+
+export type UpdateDiscountInput = {
+  id: string,
+  userID?: string | null,
+  number?: string | null,
+  archived?: boolean | null,
+};
+
+export type DeleteDiscountInput = {
+  id?: string | null,
+};
+
+export type ModelCartItemFilterInput = {
   id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  description?: ModelStringInput | null,
-  and?: Array< ModelTodoFilterInput | null > | null,
-  or?: Array< ModelTodoFilterInput | null > | null,
-  not?: ModelTodoFilterInput | null,
+  userId?: ModelStringInput | null,
+  title?: ModelStringInput | null,
+  subtitle?: ModelStringInput | null,
+  quantity?: ModelIntInput | null,
+  and?: Array< ModelCartItemFilterInput | null > | null,
+  or?: Array< ModelCartItemFilterInput | null > | null,
+  not?: ModelCartItemFilterInput | null,
 };
 
 export type ModelIDInput = {
@@ -91,103 +192,493 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
-export type CreateTodoMutationVariables = {
-  input: CreateTodoInput,
-  condition?: ModelTodoConditionInput | null,
+export type ModelCustomerInformationFilterInput = {
+  id?: ModelIDInput | null,
+  userID?: ModelStringInput | null,
+  email?: ModelStringInput | null,
+  isSubscribed?: ModelBooleanInput | null,
+  and?: Array< ModelCustomerInformationFilterInput | null > | null,
+  or?: Array< ModelCustomerInformationFilterInput | null > | null,
+  not?: ModelCustomerInformationFilterInput | null,
 };
 
-export type CreateTodoMutation = {
-  createTodo:  {
-    __typename: "Todo",
+export type ModelDiscountFilterInput = {
+  id?: ModelIDInput | null,
+  userID?: ModelStringInput | null,
+  number?: ModelStringInput | null,
+  archived?: ModelBooleanInput | null,
+  and?: Array< ModelDiscountFilterInput | null > | null,
+  or?: Array< ModelDiscountFilterInput | null > | null,
+  not?: ModelDiscountFilterInput | null,
+};
+
+export type ValidateDiscountMutationVariables = {
+  discount?: string | null,
+};
+
+export type ValidateDiscountMutation = {
+  validateDiscount: string | null,
+};
+
+export type CreateCartItemMutationVariables = {
+  input: CreateCartItemInput,
+  condition?: ModelCartItemConditionInput | null,
+};
+
+export type CreateCartItemMutation = {
+  createCartItem:  {
+    __typename: "CartItem",
     id: string,
-    name: string,
-    description: string | null,
+    userId: string,
+    title: string,
+    subtitle: string | null,
+    quantity: number | null,
+    price:  {
+      __typename: "Price",
+      amount: number,
+      currency: string,
+    },
   } | null,
 };
 
-export type UpdateTodoMutationVariables = {
-  input: UpdateTodoInput,
-  condition?: ModelTodoConditionInput | null,
+export type UpdateCartItemMutationVariables = {
+  input: UpdateCartItemInput,
+  condition?: ModelCartItemConditionInput | null,
 };
 
-export type UpdateTodoMutation = {
-  updateTodo:  {
-    __typename: "Todo",
+export type UpdateCartItemMutation = {
+  updateCartItem:  {
+    __typename: "CartItem",
     id: string,
-    name: string,
-    description: string | null,
+    userId: string,
+    title: string,
+    subtitle: string | null,
+    quantity: number | null,
+    price:  {
+      __typename: "Price",
+      amount: number,
+      currency: string,
+    },
   } | null,
 };
 
-export type DeleteTodoMutationVariables = {
-  input: DeleteTodoInput,
-  condition?: ModelTodoConditionInput | null,
+export type DeleteCartItemMutationVariables = {
+  input: DeleteCartItemInput,
+  condition?: ModelCartItemConditionInput | null,
 };
 
-export type DeleteTodoMutation = {
-  deleteTodo:  {
-    __typename: "Todo",
+export type DeleteCartItemMutation = {
+  deleteCartItem:  {
+    __typename: "CartItem",
     id: string,
-    name: string,
-    description: string | null,
+    userId: string,
+    title: string,
+    subtitle: string | null,
+    quantity: number | null,
+    price:  {
+      __typename: "Price",
+      amount: number,
+      currency: string,
+    },
   } | null,
 };
 
-export type GetTodoQueryVariables = {
+export type CreateCustomerInformationMutationVariables = {
+  input: CreateCustomerInformationInput,
+  condition?: ModelCustomerInformationConditionInput | null,
+};
+
+export type CreateCustomerInformationMutation = {
+  createCustomerInformation:  {
+    __typename: "CustomerInformation",
+    id: string,
+    userID: string,
+    email: string,
+    isSubscribed: boolean,
+    shippingAddress:  {
+      __typename: "ShippingAddress",
+      fname: string,
+      lname: string,
+      flat: string,
+      street: string,
+      city: string,
+      country: string,
+      state: string,
+      zipCode: string,
+    },
+  } | null,
+};
+
+export type UpdateCustomerInformationMutationVariables = {
+  input: UpdateCustomerInformationInput,
+  condition?: ModelCustomerInformationConditionInput | null,
+};
+
+export type UpdateCustomerInformationMutation = {
+  updateCustomerInformation:  {
+    __typename: "CustomerInformation",
+    id: string,
+    userID: string,
+    email: string,
+    isSubscribed: boolean,
+    shippingAddress:  {
+      __typename: "ShippingAddress",
+      fname: string,
+      lname: string,
+      flat: string,
+      street: string,
+      city: string,
+      country: string,
+      state: string,
+      zipCode: string,
+    },
+  } | null,
+};
+
+export type DeleteCustomerInformationMutationVariables = {
+  input: DeleteCustomerInformationInput,
+  condition?: ModelCustomerInformationConditionInput | null,
+};
+
+export type DeleteCustomerInformationMutation = {
+  deleteCustomerInformation:  {
+    __typename: "CustomerInformation",
+    id: string,
+    userID: string,
+    email: string,
+    isSubscribed: boolean,
+    shippingAddress:  {
+      __typename: "ShippingAddress",
+      fname: string,
+      lname: string,
+      flat: string,
+      street: string,
+      city: string,
+      country: string,
+      state: string,
+      zipCode: string,
+    },
+  } | null,
+};
+
+export type CreateDiscountMutationVariables = {
+  input: CreateDiscountInput,
+  condition?: ModelDiscountConditionInput | null,
+};
+
+export type CreateDiscountMutation = {
+  createDiscount:  {
+    __typename: "Discount",
+    id: string,
+    userID: string,
+    number: string,
+    archived: boolean,
+  } | null,
+};
+
+export type UpdateDiscountMutationVariables = {
+  input: UpdateDiscountInput,
+  condition?: ModelDiscountConditionInput | null,
+};
+
+export type UpdateDiscountMutation = {
+  updateDiscount:  {
+    __typename: "Discount",
+    id: string,
+    userID: string,
+    number: string,
+    archived: boolean,
+  } | null,
+};
+
+export type DeleteDiscountMutationVariables = {
+  input: DeleteDiscountInput,
+  condition?: ModelDiscountConditionInput | null,
+};
+
+export type DeleteDiscountMutation = {
+  deleteDiscount:  {
+    __typename: "Discount",
+    id: string,
+    userID: string,
+    number: string,
+    archived: boolean,
+  } | null,
+};
+
+export type GetCartItemQueryVariables = {
   id: string,
 };
 
-export type GetTodoQuery = {
-  getTodo:  {
-    __typename: "Todo",
+export type GetCartItemQuery = {
+  getCartItem:  {
+    __typename: "CartItem",
     id: string,
-    name: string,
-    description: string | null,
+    userId: string,
+    title: string,
+    subtitle: string | null,
+    quantity: number | null,
+    price:  {
+      __typename: "Price",
+      amount: number,
+      currency: string,
+    },
   } | null,
 };
 
-export type ListTodosQueryVariables = {
-  filter?: ModelTodoFilterInput | null,
+export type ListCartItemsQueryVariables = {
+  filter?: ModelCartItemFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListTodosQuery = {
-  listTodos:  {
-    __typename: "ModelTodoConnection",
+export type ListCartItemsQuery = {
+  listCartItems:  {
+    __typename: "ModelCartItemConnection",
     items:  Array< {
-      __typename: "Todo",
+      __typename: "CartItem",
       id: string,
-      name: string,
-      description: string | null,
+      userId: string,
+      title: string,
+      subtitle: string | null,
+      quantity: number | null,
+      price:  {
+        __typename: "Price",
+        amount: number,
+        currency: string,
+      },
     } | null > | null,
     nextToken: string | null,
   } | null,
 };
 
-export type OnCreateTodoSubscription = {
-  onCreateTodo:  {
-    __typename: "Todo",
+export type GetCustomerInformationQueryVariables = {
+  id: string,
+};
+
+export type GetCustomerInformationQuery = {
+  getCustomerInformation:  {
+    __typename: "CustomerInformation",
     id: string,
-    name: string,
-    description: string | null,
+    userID: string,
+    email: string,
+    isSubscribed: boolean,
+    shippingAddress:  {
+      __typename: "ShippingAddress",
+      fname: string,
+      lname: string,
+      flat: string,
+      street: string,
+      city: string,
+      country: string,
+      state: string,
+      zipCode: string,
+    },
   } | null,
 };
 
-export type OnUpdateTodoSubscription = {
-  onUpdateTodo:  {
-    __typename: "Todo",
-    id: string,
-    name: string,
-    description: string | null,
+export type ListCustomerInformationsQueryVariables = {
+  filter?: ModelCustomerInformationFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListCustomerInformationsQuery = {
+  listCustomerInformations:  {
+    __typename: "ModelCustomerInformationConnection",
+    items:  Array< {
+      __typename: "CustomerInformation",
+      id: string,
+      userID: string,
+      email: string,
+      isSubscribed: boolean,
+      shippingAddress:  {
+        __typename: "ShippingAddress",
+        fname: string,
+        lname: string,
+        flat: string,
+        street: string,
+        city: string,
+        country: string,
+        state: string,
+        zipCode: string,
+      },
+    } | null > | null,
+    nextToken: string | null,
   } | null,
 };
 
-export type OnDeleteTodoSubscription = {
-  onDeleteTodo:  {
-    __typename: "Todo",
+export type GetDiscountQueryVariables = {
+  id: string,
+};
+
+export type GetDiscountQuery = {
+  getDiscount:  {
+    __typename: "Discount",
     id: string,
-    name: string,
-    description: string | null,
+    userID: string,
+    number: string,
+    archived: boolean,
+  } | null,
+};
+
+export type ListDiscountsQueryVariables = {
+  filter?: ModelDiscountFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListDiscountsQuery = {
+  listDiscounts:  {
+    __typename: "ModelDiscountConnection",
+    items:  Array< {
+      __typename: "Discount",
+      id: string,
+      userID: string,
+      number: string,
+      archived: boolean,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type OnCreateCartItemSubscription = {
+  onCreateCartItem:  {
+    __typename: "CartItem",
+    id: string,
+    userId: string,
+    title: string,
+    subtitle: string | null,
+    quantity: number | null,
+    price:  {
+      __typename: "Price",
+      amount: number,
+      currency: string,
+    },
+  } | null,
+};
+
+export type OnUpdateCartItemSubscription = {
+  onUpdateCartItem:  {
+    __typename: "CartItem",
+    id: string,
+    userId: string,
+    title: string,
+    subtitle: string | null,
+    quantity: number | null,
+    price:  {
+      __typename: "Price",
+      amount: number,
+      currency: string,
+    },
+  } | null,
+};
+
+export type OnDeleteCartItemSubscription = {
+  onDeleteCartItem:  {
+    __typename: "CartItem",
+    id: string,
+    userId: string,
+    title: string,
+    subtitle: string | null,
+    quantity: number | null,
+    price:  {
+      __typename: "Price",
+      amount: number,
+      currency: string,
+    },
+  } | null,
+};
+
+export type OnCreateCustomerInformationSubscription = {
+  onCreateCustomerInformation:  {
+    __typename: "CustomerInformation",
+    id: string,
+    userID: string,
+    email: string,
+    isSubscribed: boolean,
+    shippingAddress:  {
+      __typename: "ShippingAddress",
+      fname: string,
+      lname: string,
+      flat: string,
+      street: string,
+      city: string,
+      country: string,
+      state: string,
+      zipCode: string,
+    },
+  } | null,
+};
+
+export type OnUpdateCustomerInformationSubscription = {
+  onUpdateCustomerInformation:  {
+    __typename: "CustomerInformation",
+    id: string,
+    userID: string,
+    email: string,
+    isSubscribed: boolean,
+    shippingAddress:  {
+      __typename: "ShippingAddress",
+      fname: string,
+      lname: string,
+      flat: string,
+      street: string,
+      city: string,
+      country: string,
+      state: string,
+      zipCode: string,
+    },
+  } | null,
+};
+
+export type OnDeleteCustomerInformationSubscription = {
+  onDeleteCustomerInformation:  {
+    __typename: "CustomerInformation",
+    id: string,
+    userID: string,
+    email: string,
+    isSubscribed: boolean,
+    shippingAddress:  {
+      __typename: "ShippingAddress",
+      fname: string,
+      lname: string,
+      flat: string,
+      street: string,
+      city: string,
+      country: string,
+      state: string,
+      zipCode: string,
+    },
+  } | null,
+};
+
+export type OnCreateDiscountSubscription = {
+  onCreateDiscount:  {
+    __typename: "Discount",
+    id: string,
+    userID: string,
+    number: string,
+    archived: boolean,
+  } | null,
+};
+
+export type OnUpdateDiscountSubscription = {
+  onUpdateDiscount:  {
+    __typename: "Discount",
+    id: string,
+    userID: string,
+    number: string,
+    archived: boolean,
+  } | null,
+};
+
+export type OnDeleteDiscountSubscription = {
+  onDeleteDiscount:  {
+    __typename: "Discount",
+    id: string,
+    userID: string,
+    number: string,
+    archived: boolean,
   } | null,
 };

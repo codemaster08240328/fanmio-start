@@ -16,5 +16,22 @@
 				}
 			}
 		}
+	},
+	"function": {
+		"fanmiotest71320281": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "fanmioTestEndpoint",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				}
+			]
+		}
 	}
 }

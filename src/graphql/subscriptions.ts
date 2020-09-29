@@ -1,30 +1,138 @@
 // tslint:disable
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTodo = /* GraphQL */ `
-  subscription OnCreateTodo {
-    onCreateTodo {
+export const onCreateCartItem = /* GraphQL */ `
+  subscription OnCreateCartItem {
+    onCreateCartItem {
       id
-      name
-      description
+      userId
+      title
+      subtitle
+      quantity
+      price {
+        amount
+        currency
+      }
     }
   }
 `;
-export const onUpdateTodo = /* GraphQL */ `
-  subscription OnUpdateTodo {
-    onUpdateTodo {
+export const onUpdateCartItem = /* GraphQL */ `
+  subscription OnUpdateCartItem {
+    onUpdateCartItem {
       id
-      name
-      description
+      userId
+      title
+      subtitle
+      quantity
+      price {
+        amount
+        currency
+      }
     }
   }
 `;
-export const onDeleteTodo = /* GraphQL */ `
-  subscription OnDeleteTodo {
-    onDeleteTodo {
+export const onDeleteCartItem = /* GraphQL */ `
+  subscription OnDeleteCartItem {
+    onDeleteCartItem {
       id
-      name
-      description
+      userId
+      title
+      subtitle
+      quantity
+      price {
+        amount
+        currency
+      }
+    }
+  }
+`;
+export const onCreateCustomerInformation = /* GraphQL */ `
+  subscription OnCreateCustomerInformation {
+    onCreateCustomerInformation {
+      id
+      userID
+      email
+      isSubscribed
+      shippingAddress {
+        fname
+        lname
+        flat
+        street
+        city
+        country
+        state
+        zipCode
+      }
+    }
+  }
+`;
+export const onUpdateCustomerInformation = /* GraphQL */ `
+  subscription OnUpdateCustomerInformation {
+    onUpdateCustomerInformation {
+      id
+      userID
+      email
+      isSubscribed
+      shippingAddress {
+        fname
+        lname
+        flat
+        street
+        city
+        country
+        state
+        zipCode
+      }
+    }
+  }
+`;
+export const onDeleteCustomerInformation = /* GraphQL */ `
+  subscription OnDeleteCustomerInformation {
+    onDeleteCustomerInformation {
+      id
+      userID
+      email
+      isSubscribed
+      shippingAddress {
+        fname
+        lname
+        flat
+        street
+        city
+        country
+        state
+        zipCode
+      }
+    }
+  }
+`;
+export const onCreateDiscount = /* GraphQL */ `
+  subscription OnCreateDiscount {
+    onCreateDiscount {
+      id
+      userID
+      number
+      archived
+    }
+  }
+`;
+export const onUpdateDiscount = /* GraphQL */ `
+  subscription OnUpdateDiscount {
+    onUpdateDiscount {
+      id
+      userID
+      number
+      archived
+    }
+  }
+`;
+export const onDeleteDiscount = /* GraphQL */ `
+  subscription OnDeleteDiscount {
+    onDeleteDiscount {
+      id
+      userID
+      number
+      archived
     }
   }
 `;
