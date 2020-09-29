@@ -121,6 +121,13 @@
             >Continue to Shipping</b-button
           >
         </b-field>
+
+        <hr />
+        <div class="terms-service">
+          <div>Refund Policy</div>
+          <div class="ml-10">Privacy Policy</div>
+          <div class="ml-10">Terms of service</div>
+        </div>
       </form>
     </div>
   </section>
@@ -136,7 +143,7 @@ import COUNTRY_LIST from '@/mock/countries.json';
 export default Vue.extend({
   components: {
     Header,
-    Breadthumbs,
+    Breadthumbs
   },
 
   data: () => ({
@@ -150,18 +157,18 @@ export default Vue.extend({
     state: '',
     postalCode: '',
 
-    countryList: [...COUNTRY_LIST],
+    countryList: [...COUNTRY_LIST]
   }),
 
   computed: {
     stateList() {
       return statesListFromCountry(this.country);
-    },
+    }
   },
 
   methods: {
-    submit() {},
-  },
+    submit() {}
+  }
 });
 </script>
 
@@ -173,6 +180,10 @@ export default Vue.extend({
 
   @include media('<tablet') {
     width: calc(100%);
+  }
+
+  hr {
+    background-color: $fanmio-light-grey !important;
   }
 }
 
@@ -201,19 +212,42 @@ label.checkbox {
 
 .fname-input-field {
   width: calc(50% - 0.325rem);
+
+  @include media('<tablet') {
+    width: 100%;
+  }
 }
 
 .lname-input-field {
   width: calc(50% - 0.325rem);
+
+  @include media('<tablet') {
+    width: 100%;
+  }
 }
 
 .grid-3-column {
   display: flex;
   justify-content: space-between;
+
+  @include media('<tablet') {
+    flex-direction: column;
+  }
+}
+.user-form-content {
+  .is-grouped {
+    @include media('<tablet') {
+      flex-direction: column;
+    }
+  }
 }
 
 .country-field-input {
   width: calc(30% - 0.325rem);
+
+  @include media('<tablet') {
+    width: 100%;
+  }
 
   span.select {
     width: 100%;
@@ -226,15 +260,32 @@ label.checkbox {
 
 .state-field-input {
   width: calc(40% - 0.75rem);
+  @include media('<tablet') {
+    width: 100%;
+  }
 }
 
 .zip-field-input {
   width: calc(30% - 0.325rem);
+  @include media('<tablet') {
+    width: 100%;
+  }
 }
 
 .desktop-header {
   @include media('<tablet') {
     display: none;
+  }
+}
+
+.terms-service {
+  display: flex;
+  color: $fanmio-primary-pink;
+  font-size: font-size('x-small');
+  margin-bottom: 20px;
+
+  @include media('<tablet') {
+    justify-content: space-between;
   }
 }
 </style>
