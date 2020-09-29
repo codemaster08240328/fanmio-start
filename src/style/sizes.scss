@@ -1,0 +1,24 @@
+$font-size: (
+  'x-large': 1.923em,
+  'large': 1.385em,
+  'medium': 1.15em,
+  'x-medium': 1.077em,
+  'small': 1em,
+  'x-small': 0.92em
+);
+
+.font-size {
+  @each $name, $size in $font-size {
+    &-#{$name} {
+      font-size: $size;
+    }
+  }
+}
+
+@function font-size($size: 'small') {
+  @return map-get($font-size, $size);
+}
+
+@function line-height() {
+  @return 1.5em;
+}

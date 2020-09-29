@@ -1,19 +1,19 @@
 <template>
   <div class="item">
-    <img :src="require('@/assets/item.png')" alt="">
+    <img class="cart-item-img" :src="require('@/assets/item.png')" alt="" />
     <span class="badge">{{ badgeCount }}</span>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 export default Vue.extend({
   name: 'BadgeItem',
 
   props: {
     badgeCount: Number,
-  }
-})
+  },
+});
 </script>
 
 <style lang="scss" scoped>
@@ -22,24 +22,23 @@ export default Vue.extend({
   padding-top: 20px;
   display: inline-block;
 
-  img {
-    min-width: 125px;
-    height: 125px;
-  }  
-
   .badge {
     position: absolute;
-    right: -18px;
-    top: 0px;
-    background: rgba(114, 114, 114, .9);
+    right: -7px;
+    top: 11px;
+    background: rgba(114, 114, 114, 0.9);
     border-radius: 50%;
     color: white;
-    font-size: 26px;
-    width: 45px;
-    height: 45px;
+    font-size: 1em;
+    width: 25px;
+    height: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+}
+
+.cart-item-img {
+  width: 100%;
 }
 </style>

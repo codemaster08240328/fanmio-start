@@ -1,16 +1,16 @@
 <template>
   <div class="prices">
     <div class="price">
-      <div class="price-title">Subtotal</div>
+      <h3>Subtotal</h3>
       <div class="valid-price">{{ `$${subtotal}` }}</div>
     </div>
     <div class="price">
-      <div class="price-title">Shipping</div>
+      <h3>Shipping</h3>
       <div class="invalid-price">{{ shipping }}</div>
     </div>
     <hr />
     <div class="price">
-      <div class="price-title">Total</div>
+      <h3>Total</h3>
       <div class="total-price">
         {{ currency }} <span class="total-price-value">{{ `$${total}` }}</span>
       </div>
@@ -50,23 +50,25 @@ export default class Prices extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import '@/style/base.scss';
+
 .prices {
   .price {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    font-size: 30px;
+    font-size: font-size('medium');
     font-weight: 700;
     color: white;
 
     .invalid-price {
-      font-size: 24px;
-      color: #727272;
+      font-size: font-size('x-small');
+      color: $fanmio-super-light-light-dark;
     }
 
     .total-price-value {
-      font-size: 50px;
+      font-size: font-size('x-large');
     }
   }
 }

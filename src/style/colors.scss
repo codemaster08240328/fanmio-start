@@ -1,0 +1,75 @@
+$fanmio-primary-dark: #1f1b32;
+$fanmio-light-dark: #37334b;
+$fanmio-super-light-dark: #696678;
+$fanmio-super-light-light-dark: #8f8d99;
+
+$fanmio-primary-grey: #7f7e80;
+$fanmio-light-grey: #d9dcde;
+$fanmio-super-light-grey: #fbfbfa;
+
+$fanmio-primary-pink: #a548d3;
+
+$fanmio-white: #fff;
+$fanmio-black: #000;
+
+$palette: (
+  'primary': (
+    'primary': $fanmio-primary-dark
+  ),
+  'text': (
+    'primary': $fanmio-white
+  ),
+  'background': (
+    'primary': $fanmio-primary-dark,
+    'pink': $fanmio-primary-pink,
+    'light-dark': $fanmio-light-dark
+  )
+);
+
+.color {
+  @each $color-spectrum, $variants in $palette {
+    &-#{$color-spectrum} {
+      @each $color, $value in $variants {
+        &-#{$color} {
+          color: $value !important;
+        }
+      }
+    }
+  }
+}
+
+.bg-color {
+  @each $color-spectrum, $variants in $palette {
+    &-#{$color-spectrum} {
+      @each $color, $value in $variants {
+        &-#{$color} {
+          background-color: $value !important;
+        }
+      }
+    }
+  }
+}
+
+$primary-color-key: 'primary' !default;
+
+@function color(
+  $name: 'primary',
+  $variant: $primary-color-key,
+  $palette: $palette
+) {
+  $color: null;
+  // Get the color spectrum
+  $color-spectrum: map-get($palette, $name);
+  // Get the color variant
+  @if $color-spectrum {
+    $color: map-get($color-spectrum, $variant);
+
+    @if not($color) {
+      @warn 'Color `#{$variant}` does not exist in spectrum `#{$name}`';
+    }
+  } @else {
+    @warn 'Spectrum `#{$name}` does not exist';
+  }
+
+  @return $color;
+}
