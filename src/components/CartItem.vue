@@ -12,44 +12,24 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue'
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
 import BadgeItem from './BadgeItem.vue';
+import { CartItem as ItemType, ItemPrice } from '@/types';
 import { getCurrencySymbol } from '@/utils/currency-service';
 
-interface PriceType {
-  currency: string,
-  amount: number
-}
-
-interface ItemType {
-  id: string,
-  title: string,
-  subtitle: string,
-  quantity: number,
-  price: PriceType
-}
-
-export default Vue.extend({
-  name: 'CartItem',
-
-  components: {
-    BadgeItem
-  },
-
-  props: {
-    item: {
-      type: Object as PropType<ItemType>,
-    }
-  },
-
-  methods: {
-    getStyledPrice(price: PriceType) {
-      if (price.amount === 0) return 'Included'
-
-      return `${getCurrencySymbol(price.currency)}${price.amount}`;
-    }
-  }
+@Component({
+  components: { BadgeItem }
 })
+export default class CartItem extends Vue {
+  @Prop({default: {}}) readonly item!: ItemType
+
+  getStyledPrice(price: ItemPrice): string {
+    if (price.amount === 0) return 'Included'
+
+    return `${getCurrencySymbol(price.currency)}${price.amount}`;
+  }
+};
 </script>
 
 <style lang="scss" scoped>

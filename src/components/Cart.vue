@@ -9,18 +9,15 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue'
-import CartItem from './CartItem.vue'
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
+import CartItem from './CartItem.vue';
+import { CartItem as ItemType } from '@/types';
 
-export default Vue.extend({
-  name: 'Cart',
-
-  components: {
-    CartItem,
-  },
-
-  props: {
-    items: Array,
-  }
+@Component({
+  components: { CartItem },
 })
+export default class Cart extends Vue {
+  @Prop({default: []}) readonly items!: Array<ItemType>;
+};
 </script>

@@ -21,32 +21,20 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
-
-interface PriceType {
-  currency: string;
-  amount: number;
-}
-
-interface ItemType {
-  id: string;
-  title: string;
-  subtitle: string;
-  quantity: number;
-  price: PriceType;
-}
+import { CartItem, ItemPrice } from '@/types';
 
 @Component
 export default class Prices extends Vue {
-  @Prop(Array) readonly items!: Array<ItemType>;
+  @Prop({default: []}) readonly items!: Array<CartItem>;
 
   private shippingPrice: number = -1;
 
   get currency(): string {
-    return this.items.length ? this.items[0].price.currency : '';
+    return this.items?.[0]?.price?.currency || 'USD';
   }
 
   get subtotal(): number {
-    return this.items.reduce((s, item) => (s += item.price.amount), 0);
+    return this.items?.reduce((a, item) => a + item.price.amount, 0) || 0;
   }
 
   get shipping(): number | string {

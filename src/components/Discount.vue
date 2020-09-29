@@ -32,28 +32,42 @@ import Prices from './Prices.vue'
 
 import LINE_ITEMS from '@/mock/line-items.json'
 
-interface PriceType {
-  currency: string,
-  amount: number
-}
+import callGraphQL from '@/wrapper'
+import { ListCartItemsQuery } from '@/API'
+import { listCartItems } from '@/graphql/queries'
+import AsyncComputed from 'vue-async-computed'
 
-interface ItemType {
-  id: string,
-  title: string,
-  subtitle: string,
-  quantity: number,
-  price: PriceType
-}
+import { CartItem, ItemPrice } from '@/types'
 
 @Component({
   components: {
     Cart,
     Prices
+  },
+  asyncComputed: {
+    async cartItems() {
+      const { data } = await callGraphQL<ListCartItemsQuery>(listCartItems, {
+        filter: {
+          userId: {
+            eq: 'testuser_1234'
+          }
+        }
+      });
+  
+      return data?.listCartItems?.items?.map(item => ({
+        id: item?.id,
+        title: item?.title,
+        subtitle: item?.subtitle,
+        quantity: item?.quantity,
+        price: {
+          amount: item?.price?.amount,
+          currency: item?.price?.currency
+        } as ItemPrice
+      } as CartItem)) || [];
+    }
   }
 })
 export default class Discount extends Vue {
-  private cartItems: Array<ItemType> = [...LINE_ITEMS.lineItems]
-  
   applyDiscount() {}
 }
 </script>
